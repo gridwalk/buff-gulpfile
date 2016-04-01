@@ -1,0 +1,12 @@
+// global element types
+
+*{
+	box-sizing:border-box;
+	-webkit-font-smoothing:antialiased;
+}
+
+img,svg{
+	max-width: 100%;
+	height: auto;
+	user-select:none;
+}

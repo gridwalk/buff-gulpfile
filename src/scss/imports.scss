@@ -1,0 +1,21 @@
+
+// variables & config
+$red:#bd0020;
+$deep-red:#ae132a;
+$gray:#555555;
+$green:#007337;
+$dark-gray:#44464a;
+$deep-gray:#46484c;
+$purple:#631d76;
+$orange:#ce4c00;
+$blue:#5174b8;
+
+$serif:georgia,serif;
+$sans-serif:verdana, sans-serif;
+
+@import "reset";
+@import "semantic-classes";
+@import "global-elements";
+@import "lists";
+@import "blocks";
+@import "buttons";
