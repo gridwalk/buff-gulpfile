@@ -23,7 +23,7 @@ var paths = {
 	partials: './src/html/partials/**/*',
 	images:   './src/img/**/*',
 	svgs:     './src/img/svgs.json',
-	dist:     './dist/english'
+	dist:     './dist'
 }
 
 /*
