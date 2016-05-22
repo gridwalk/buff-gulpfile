@@ -14,11 +14,7 @@ var fs           = require('fs')                       // file system, used to l
 		stylish      = require('jshint-stylish'),          // makes lint errors look nicer
 		plumber      = require('gulp-plumber'),            // keeps pipes working even when error happens
 		notify       = require('gulp-notify'),             // system notification when error happens
-		cache        = require('gulp-cache'),              // caches image optimizations
-		imagemin     = require('gulp-imagemin'),           // optimizes images
-		del          = require('del'),										 // deletes files. used in 'clean' task
-		ga           = require('gulp-ga'),                 // adds google analytics script before closing <head>
-		sitemap      = require('gulp-sitemap')             // generates SEO sitemap
+		del          = require('del')	  									 // deletes files. used in 'clean' task
 
 var paths = {
 	styles:   './src/scss/**/*',
@@ -29,9 +25,6 @@ var paths = {
 	svgs:     './src/img/svgs.json',
 	dist:     './dist/english'
 }
-
-// used below in sitemap and analytics
-var siteURL = 'http://yoursitedomain.com'
 
 /*
 
@@ -122,8 +115,7 @@ gulp.task('lint',function(){
 gulp.task('images', ['clean'], function(){
 	return gulp.src(paths.images,{base:'./src/img/'})
 
-	// disabled on 3/29/2016 because optipng was breaking the plugin
-	// .pipe(cache(imagemin())) // can be customized with options
+	
 
 	.pipe(gulp.dest(paths.dist+'/img'))
 })
@@ -182,7 +174,6 @@ gulp.task('html',['lint-svgs','images','clean'], function () {
 		.pipe(rename(function(path){
 			path.extname = '.html'
 		}))
-		.pipe(ga({url:siteURL, uid: "UA_12345678-1"})) // add your GA ID
 		.pipe(gulp.dest(paths.dist))
 		.pipe(livereload())
 })
@@ -235,7 +226,7 @@ gulp.task('open',['serve'], function(){
 gulp.task('watch',['serve'], function(){
 	gulp.watch(paths.styles,   ['styles'])
 	gulp.watch(paths.scripts,  ['scripts'])
-	gulp.watch(paths.pages,    ['html','sitemap'])
+	gulp.watch(paths.pages,    ['html'])
 	gulp.watch(paths.partials, ['html'])
 	gulp.watch(paths.content,  ['html'])
 	gulp.watch(paths.svgs,     ['html'])
@@ -256,12 +247,5 @@ gulp.task('clean',function(){
 	 return del('./dist')
 })
 
-gulp.task('sitemap',['html'],function(){
-	gulp.src(paths.dist+'/**/*.html')
-	.pipe(sitemap({
-		siteUrl:siteURL
-	}))
-	.pipe(gulp.dest(paths.dist))
-})
 
-gulp.task('default', ['clean','styles','scripts','images','html','serve','watch','livereload-listen','open','sitemap'])
+gulp.task('default', ['clean','styles','scripts','images','html','serve','watch','livereload-listen','open'])
