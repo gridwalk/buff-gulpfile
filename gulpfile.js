@@ -149,7 +149,7 @@ gulp.task('lint-svgs',function(){
 		}))
 })
 
-gulp.task('html',['lint-svgs','images','clean'], function () {
+gulp.task('html',['styles','lint-svgs','images','clean'], function () {
 
 	// get svgs object
 	var svgs = JSON.parse(fs.readFileSync(paths.svgs,'utf8'))
