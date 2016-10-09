@@ -5,14 +5,14 @@
 ██╔══██╗██║   ██║██╔══╝  ██╔══╝                              
 ██████╔╝╚██████╔╝██║     ██║                                 
 ╚═════╝  ╚═════╝ ╚═╝     ╚═╝                                 
-																														 
+                                                             
  ██████╗ ██╗   ██╗██╗     ██████╗ ███████╗██╗██╗     ███████╗
 ██╔════╝ ██║   ██║██║     ██╔══██╗██╔════╝██║██║     ██╔════╝
 ██║  ███╗██║   ██║██║     ██████╔╝█████╗  ██║██║     █████╗  
 ██║   ██║██║   ██║██║     ██╔═══╝ ██╔══╝  ██║██║     ██╔══╝  
 ╚██████╔╝╚██████╔╝███████╗██║     ██║     ██║███████╗███████╗
  ╚═════╝  ╚═════╝ ╚══════╝╚═╝     ╚═╝     ╚═╝╚══════╝╚══════╝
-																														 
+                                                             
 ```
 
 > a project template.
@@ -50,9 +50,10 @@ SVGs are stored as template variables, so you should add SVGs to the JSON in `sr
 
 Note the triple brackets- this makes the variable render as HTML rather than escaped characters, which is essential for rendering inline SVG.
 
-## Analytics##
+## SFTP Deployment ##
 
-1. Update the value of `siteURL` near the top of the gulpfile. (Also used for the sitemap)
-2. Inside the HTML task replace `UA-12345678-1` with your Google Analytics UID.
+1. Update your host and remote path in the deploy task, near the bottom of the gulpfile
+2. Update your SFTP username and password in the .ftppass file
+3. Add .ftppass to .gitignore to keep it out of version control
 
-Or optionally comment out that line if you're not using GA.
+Run `gulp deploy` to upload the /dist folder to the server.
