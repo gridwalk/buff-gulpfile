@@ -14,7 +14,8 @@ var fs           = require('fs')                       // file system, used to l
 		stylish      = require('jshint-stylish'),          // makes lint errors look nicer
 		plumber      = require('gulp-plumber'),            // keeps pipes working even when error happens
 		notify       = require('gulp-notify'),             // system notification when error happens
-		del          = require('del')	  									 // deletes files. used in 'clean' task
+		del          = require('del'),  									 // deletes files. used in 'clean' task
+		sftp         = require('gulp-sftp')                // secure ftp deployment
 
 var paths = {
 	styles:   './src/scss/**/*',
@@ -230,6 +231,28 @@ gulp.task('watch',['serve'], function(){
 	gulp.watch(paths.partials, ['html'])
 	gulp.watch(paths.content,  ['html'])
 	gulp.watch(paths.svgs,     ['html'])
+})
+
+/*
+
+██████╗ ███████╗██████╗ ██╗      ██████╗ ██╗   ██╗
+██╔══██╗██╔════╝██╔══██╗██║     ██╔═══██╗╚██╗ ██╔╝
+██║  ██║█████╗  ██████╔╝██║     ██║   ██║ ╚████╔╝ 
+██║  ██║██╔══╝  ██╔═══╝ ██║     ██║   ██║  ╚██╔╝  
+██████╔╝███████╗██║     ███████╗╚██████╔╝   ██║   
+╚═════╝ ╚══════╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   
+
+*************************************************/
+
+gulp.task('deploy', function(){
+
+	return gulp.src('dist/**/*')
+		.pipe(sftp({
+			host:       'website-url.com',
+			remotePath: 'website-url.com', // whatever your folder is named where your site will be uploaded
+			auth:       'keyMain' // corresponds to a file called .ftppass (add this file to .gitignore)
+		}))
+
 })
 
 /*
