@@ -228,12 +228,12 @@ gulp.task('open',['serve'], function(){
 **********************************************/
 
 gulp.task('watch',['serve'], function(){
-	gulp.watch(paths.styles,   ['styles'])
-	gulp.watch(paths.scripts,  ['scripts'])
-	gulp.watch(paths.pages,    ['html'])
-	gulp.watch(paths.partials, ['html'])
-	gulp.watch(paths.content,  ['html'])
-	gulp.watch(paths.svgs,     ['html'])
+	gulp.watch(paths.styles,      ['styles'])
+	gulp.watch(paths.scripts.app, ['scripts'])
+	gulp.watch(paths.pages,       ['html'])
+	gulp.watch(paths.partials,    ['html'])
+	gulp.watch(paths.content,     ['html'])
+	gulp.watch(paths.svgs,        ['html'])
 })
 
 /*
