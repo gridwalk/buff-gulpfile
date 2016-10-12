@@ -19,7 +19,10 @@ var fs           = require('fs')                       // file system, used to l
 
 var paths = {
 	styles:   './src/scss/**/*',
-	scripts:  './src/js/**/*',
+	scripts:  {
+    vendor: './js/vendor/**/*',
+    app:    './js/app/**/*',
+  },
 	pages:    './src/html/pages/**/*',
 	partials: './src/html/partials/**/*',
 	images:   './src/img/**/*',
@@ -75,14 +78,14 @@ gulp.task('styles', ['clean'], function(){
 ********************************************************/
 
 gulp.task('scripts', ['lint','clean'], function(){
-	return gulp.src(paths.scripts)
+	return gulp.src([paths.scripts.vendor,paths.scripts.app])
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(paths.dist))
 		.pipe(livereload())
 })
 
 gulp.task('lint',function(){
-	return gulp.src(paths.scripts)
+	return gulp.src(paths.scripts.app)
 		.pipe(plumber())
 		.pipe(jshint({
 			'asi':true // allows missing semicolons
