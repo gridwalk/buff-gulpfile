@@ -20,8 +20,8 @@ var fs           = require('fs')                       // file system, used to l
 var paths = {
 	styles:   './src/scss/**/*',
 	scripts:  {
-    vendor: './js/vendor/**/*',
-    app:    './js/app/**/*',
+    vendor: './src/js/vendor/**/*',
+    app:    './src/js/app/**/*',
   },
 	pages:    './src/html/pages/**/*',
 	partials: './src/html/partials/**/*',
